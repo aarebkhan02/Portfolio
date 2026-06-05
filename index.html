@@ -180,6 +180,154 @@
                 font-size: 3.2rem
             }
         }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+
+            background: linear-gradient(135deg,
+                    rgba(10, 15, 30, .95),
+                    rgba(13, 25, 50, .85),
+                    rgba(8, 12, 25, .95));
+
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(59, 130, 246, .18);
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+
+            background: linear-gradient(90deg, #93c5fd, #60a5fa, #c7d2fe);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* MOBILE NAV */
+        @media(max-width:768px) {
+
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+
+                flex-direction: column;
+                gap: 20px;
+
+                background: rgba(8, 12, 25, .98);
+                backdrop-filter: blur(15px);
+
+                padding: 25px 0;
+
+                /* Animation */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-20px);
+
+                transition:
+                    opacity .35s ease,
+                    transform .35s ease,
+                    visibility .35s ease;
+
+                display: flex;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:768px) {
+
+            section {
+                padding: 80px 5% !important;
+            }
+
+            .hero {
+                padding-top: 120px !important;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .summary-container {
+                flex-direction: column;
+            }
+
+            .profile-box img {
+                max-width: 220px !important;
+            }
+
+            .card {
+                width: 100% !important;
+            }
+        }
+
+        @media(max-width:480px) {
+
+            h1 {
+                font-size: 2.3rem !important;
+            }
+
+            h2 {
+                font-size: 1.8rem !important;
+            }
+
+            p {
+                font-size: .92rem !important;
+            }
+
+            .skill-card {
+                padding: 20px !important;
+            }
+        }
+
+        
     </style>
 </head>
 
@@ -187,98 +335,27 @@
 
     <div id="halo-bg"></div>
 
-   <!-- NAV -->
-<nav style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 6%;
-    position:sticky;
-    top:0;
-    z-index:999;
+    <!-- NAV -->
+    <nav class="navbar">
 
-    /* layered dark blue gradient */
-    background:linear-gradient(
-        135deg,
-        rgba(10,15,30,0.95),
-        rgba(13,25,50,0.85),
-        rgba(8,12,25,0.95)
-    );
+        <div class="logo">
+            &lt;Aareb's Portfolio/&gt;
+        </div>
 
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(59,130,246,0.18);
-    box-shadow:0 10px 40px rgba(0,0,0,0.55);
-">
+        <!-- Hamburger -->
+        <div class="menu-toggle" onclick="toggleMenu(this)">
+            ☰
+        </div>
 
-    <!-- LEFT BRAND -->
-    <div style="
-        font-size:16px;
-        font-weight:700;
-        letter-spacing:0.7px;
-        white-space:nowrap;
+        <!-- Nav Links -->
+        <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
 
-        background:linear-gradient(90deg,#93c5fd,#60a5fa,#c7d2fe);
-        -webkit-background-clip:text;
-        color:transparent;
-
-        text-shadow:0 0 22px rgba(59,130,246,0.18);
-    ">
-        &lt;Aareb's Portfolio/&gt;
-    </div>
-
-    <!-- LINKS -->
-    <div style="
-        display:flex;
-        gap:26px;
-        align-items:center;
-    ">
-        <a href="#about" style="
-            color:#94a3b8;
-            text-decoration:none;
-            font-size:14px;
-            position:relative;
-            transition:.25s;
-        "
-        onmouseover="this.style.color='#ffffff'"
-        onmouseout="this.style.color='#94a3b8'">
-            About
-        </a>
-
-        <a href="#skills" style="
-            color:#94a3b8;
-            text-decoration:none;
-            font-size:14px;
-            transition:.25s;
-        "
-        onmouseover="this.style.color='#60a5fa'"
-        onmouseout="this.style.color='#94a3b8'">
-            Skills
-        </a>
-
-        <a href="#projects" style="
-            color:#94a3b8;
-            text-decoration:none;
-            font-size:14px;
-            transition:.25s;
-        "
-        onmouseover="this.style.color='#93c5fd'"
-        onmouseout="this.style.color='#94a3b8'">
-            Projects
-        </a>
-
-        <a href="#contact" style="
-            color:#94a3b8;
-            text-decoration:none;
-            font-size:14px;
-            transition:.25s;
-        "
-        onmouseover="this.style.color='#c7d2fe'"
-        onmouseout="this.style.color='#94a3b8'">
-            Contact
-        </a>
-    </div>
-
-</nav>
+    </nav>
 
     <!-- HERO -->
     <section class="hero" style="
@@ -1442,21 +1519,21 @@ gap:clamp(10px,2vw,18px);
     </section>
 
 
-   <!-- PROJECTS -->
-<section id="projects" style="
+    <!-- PROJECTS -->
+    <section id="projects" style="
     padding:clamp(80px,10vw,140px) 6%;
     position:relative;
     background:radial-gradient(circle at top, rgba(79,172,254,0.08), transparent 60%);
     box-sizing:border-box;
 ">
 
-    <!-- TITLE -->
-    <div style="
+        <!-- TITLE -->
+        <div style="
         text-align:center;
         margin-bottom:clamp(50px,6vw,90px);
         padding:0 10px;
     ">
-        <h2 style="
+            <h2 style="
             font-size:clamp(1.8rem,4vw,3.2rem);
             font-weight:800;
             letter-spacing:1px;
@@ -1465,10 +1542,10 @@ gap:clamp(10px,2vw,18px);
             -webkit-background-clip:text;
             color:transparent;
         ">
-            Featured Projects
-        </h2>
+                Featured Projects
+            </h2>
 
-        <div style="
+            <div style="
             width:clamp(60px,8vw,90px);
             height:4px;
             margin:18px auto;
@@ -1477,26 +1554,26 @@ gap:clamp(10px,2vw,18px);
             box-shadow:0 0 25px rgba(79,172,254,0.6);
         "></div>
 
-        <p style="
+            <p style="
             font-size:clamp(0.85rem,1.5vw,0.95rem);
             max-width:600px;
             margin:0 auto;
             line-height:1.6;
         ">
-            A collection of real-world builds, AI systems, and production-ready apps
-        </p>
-    </div>
+                A collection of real-world builds, AI systems, and production-ready apps
+            </p>
+        </div>
 
-    <!-- GRID -->
-    <div style="
+        <!-- GRID -->
+        <div style="
         display:grid;
         grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
         gap:clamp(18px,3vw,35px);
         align-items:stretch;
     ">
 
-        <!-- CARD -->
-        <div style="
+            <!-- CARD -->
+            <div style="
             position:relative;
             border-radius:24px;
             padding:clamp(20px,3vw,32px);
@@ -1506,13 +1583,13 @@ gap:clamp(10px,2vw,18px);
             box-shadow:0 18px 55px rgba(0,0,0,0.6);
             overflow:hidden;
             transition:all .3s ease;
-        "
-        onmouseover="this.style.transform='translateY(-10px)';"
-        onmouseout="this.style.transform='none';">
+        " onmouseover="this.style.transform='translateY(-10px)';" onmouseout="this.style.transform='none';">
 
-            <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#4facfe,#6c7cff);"></div>
+                <div
+                    style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#4facfe,#6c7cff);">
+                </div>
 
-            <div style="
+                <div style="
                 position:absolute;
                 top:14px;
                 right:14px;
@@ -1524,40 +1601,43 @@ gap:clamp(10px,2vw,18px);
                 border:1px solid rgba(79,172,254,0.25);
                 white-space:nowrap;
             ">
-                FRONTEND
-            </div>
+                    FRONTEND
+                </div>
 
-            <h3 style="
+                <h3 style="
                 font-size:clamp(1.1rem,2vw,1.35rem);
                 margin-bottom:10px;
                 color:#e2e8f0;
                 line-height:1.3;
             ">
-                Modest Hijab Store
-            </h3>
+                    Modest Hijab Store
+                </h3>
 
-            <p style="
+                <p style="
                 font-size:0.92rem;
                 color:#9ca3af;
                 line-height:1.6;
                 margin-bottom:18px;
             ">
-                React + Tailwind ecommerce frontend with routing, filtering and dynamic cart system.
-            </p>
+                    React + Tailwind ecommerce frontend with routing, filtering and dynamic cart system.
+                </p>
 
-            <!-- TAGS -->
-            <div style="
+                <!-- TAGS -->
+                <div style="
                 display:flex;
                 flex-wrap:wrap;
                 gap:8px;
                 margin-bottom:22px;
             ">
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(79,172,254,0.15);color:#6ea8ff;">React</span>
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(99,102,241,0.15);color:#a5b4fc;">Tailwind</span>
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Frontend</span>
-            </div>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(79,172,254,0.15);color:#6ea8ff;">React</span>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(99,102,241,0.15);color:#a5b4fc;">Tailwind</span>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Frontend</span>
+                </div>
 
-            <a href="https://www.hijabstore.modest.co.in/" target="_blank" style="
+                <a href="https://www.hijabstore.modest.co.in/" target="_blank" style="
                 font-size:14px;
                 color:#6ea8ff;
                 text-decoration:none;
@@ -1568,13 +1648,13 @@ gap:clamp(10px,2vw,18px);
                 transition:.2s;
                 flex-wrap:wrap;
             ">
-                Visit Project →
-            </a>
+                    Visit Project →
+                </a>
 
-        </div>
+            </div>
 
-        <!-- CARD 2 -->
-        <div style="
+            <!-- CARD 2 -->
+            <div style="
             position:relative;
             border-radius:24px;
             padding:clamp(20px,3vw,32px);
@@ -1584,37 +1664,42 @@ gap:clamp(10px,2vw,18px);
             box-shadow:0 18px 55px rgba(0,0,0,0.6);
             overflow:hidden;
             transition:all .3s ease;
-        "
-        onmouseover="this.style.transform='translateY(-10px)';"
-        onmouseout="this.style.transform='none';">
+        " onmouseover="this.style.transform='translateY(-10px)';" onmouseout="this.style.transform='none';">
 
-            <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#8b5cf6,#6366f1);"></div>
+                <div
+                    style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#8b5cf6,#6366f1);">
+                </div>
 
-            <div style="position:absolute;top:14px;right:14px;font-size:10px;padding:5px 9px;border-radius:999px;background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.25);white-space:nowrap;">
-                AI / LLM
+                <div
+                    style="position:absolute;top:14px;right:14px;font-size:10px;padding:5px 9px;border-radius:999px;background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.25);white-space:nowrap;">
+                    AI / LLM
+                </div>
+
+                <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);margin-bottom:10px;color:#e2e8f0;">
+                    AI Chatbot (SHAWARMAA)
+                </h3>
+
+                <p style="font-size:0.92rem;color:#9ca3af;line-height:1.6;margin-bottom:18px;">
+                    Groq-powered chatbot with memory handling and real-time conversational flow.
+                </p>
+
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(139,92,246,0.15);color:#c4b5fd;">LLM</span>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Python</span>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Streamlit</span>
+                </div>
+
+                <a href="https://shawarmaa.streamlit.app/" target="_blank"
+                    style="font-size:14px;color:#a78bfa;text-decoration:none;">
+                    Try Live →
+                </a>
             </div>
 
-            <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);margin-bottom:10px;color:#e2e8f0;">
-                AI Chatbot (SHAWARMAA)
-            </h3>
-
-            <p style="font-size:0.92rem;color:#9ca3af;line-height:1.6;margin-bottom:18px;">
-                Groq-powered chatbot with memory handling and real-time conversational flow.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(139,92,246,0.15);color:#c4b5fd;">LLM</span>
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Python</span>
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">Streamlit</span>
-            </div>
-
-            <a href="https://shawarmaa.streamlit.app/" target="_blank" style="font-size:14px;color:#a78bfa;text-decoration:none;">
-                Try Live →
-            </a>
-        </div>
-
-        <!-- CARD 3 -->
-        <div style="
+            <!-- CARD 3 -->
+            <div style="
             position:relative;
             border-radius:24px;
             padding:clamp(20px,3vw,32px);
@@ -1624,36 +1709,40 @@ gap:clamp(10px,2vw,18px);
             box-shadow:0 18px 55px rgba(0,0,0,0.6);
             overflow:hidden;
             transition:all .3s ease;
-        "
-        onmouseover="this.style.transform='translateY(-10px)';"
-        onmouseout="this.style.transform='none';">
+        " onmouseover="this.style.transform='translateY(-10px)';" onmouseout="this.style.transform='none';">
 
-            <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#22c55e,#4ade80);"></div>
+                <div
+                    style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#22c55e,#4ade80);">
+                </div>
 
-            <div style="position:absolute;top:14px;right:14px;font-size:10px;padding:5px 9px;border-radius:999px;background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.25);white-space:nowrap;">
-                AI / CV
+                <div
+                    style="position:absolute;top:14px;right:14px;font-size:10px;padding:5px 9px;border-radius:999px;background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.25);white-space:nowrap;">
+                    AI / CV
+                </div>
+
+                <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);margin-bottom:10px;color:#e2e8f0;">
+                    Face Mask Detection
+                </h3>
+
+                <p style="font-size:0.92rem;color:#9ca3af;line-height:1.6;margin-bottom:18px;">
+                    YOLO-based object detection system deployed with live UI using Streamlit.
+                </p>
+
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(34,197,94,0.15);color:#86efac;">YOLO</span>
+                    <span
+                        style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">OpenCV</span>
+                </div>
+
+                <a href="https://masknomask.streamlit.app/" target="_blank"
+                    style="font-size:14px;color:#4ade80;text-decoration:none;">
+                    View Demo →
+                </a>
             </div>
 
-            <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);margin-bottom:10px;color:#e2e8f0;">
-                Face Mask Detection
-            </h3>
-
-            <p style="font-size:0.92rem;color:#9ca3af;line-height:1.6;margin-bottom:18px;">
-                YOLO-based object detection system deployed with live UI using Streamlit.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;">
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(34,197,94,0.15);color:#86efac;">YOLO</span>
-                <span style="font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);color:#cbd5f5;">OpenCV</span>
-            </div>
-
-            <a href="https://masknomask.streamlit.app/" target="_blank" style="font-size:14px;color:#4ade80;text-decoration:none;">
-                View Demo →
-            </a>
         </div>
-
-    </div>
-</section>
+    </section>
 
     <!-- CONTACT -->
     <section id="contact" style="
@@ -1939,7 +2028,16 @@ gap:clamp(10px,2vw,18px);
 
         cards.forEach(card => observer.observe(card));
     </script>
+    <script>
+        function toggleMenu(btn) {
 
+            btn.classList.toggle("active");
+
+            document
+                .getElementById("navLinks")
+                .classList.toggle("active");
+        }
+    </script>
 
 </body>
 
